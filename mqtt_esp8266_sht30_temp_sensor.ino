@@ -1,11 +1,10 @@
-#include <WEMOS_SHT3X.h>
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <WEMOS_SHT3X.h>
 #include <ArduinoJson.h>
 
 SHT3X sht30(0x45);
-StaticJsonBuffer<200> jsonBuffer;
+StaticJsonDocument<200> doc;
 
 const char* ssid = "ssid";
 const char* password = "password";
@@ -15,8 +14,6 @@ const char* sensor_location = "where_am_i";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-
-JsonObject& root = jsonBuffer.createObject();
 
 void setup() {
   setup_wifi();
@@ -40,11 +37,11 @@ void reconnect() {
 
 void send_temp(){
     if(sht30.get()==0){      
-      root["location"] = sensor_location;
-      root["temperature"] = sht30.cTemp;
-      root["humditiy"] = sht30.humidity;
+      doc["location"] = sensor_location;
+      doc["temperature"] = sht30.cTemp;
+      doc["humditiy"] = sht30.humidity;
       char JSONmessageBuffer[200];
-      root.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
+      serializeJson(doc, JSONmessageBuffer);
       client.publish("temp_sensors", JSONmessageBuffer);
     }
 }
