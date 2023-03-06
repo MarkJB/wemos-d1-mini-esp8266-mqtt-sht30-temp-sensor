@@ -39,7 +39,7 @@ void send_temp(){
     if(sht30.get()==0){      
       doc["location"] = sensor_location;
       doc["temperature"] = sht30.cTemp;
-      doc["humditiy"] = sht30.humidity;
+      doc["humidity"] = sht30.humidity;
       char JSONmessageBuffer[200];
       serializeJson(doc, JSONmessageBuffer);
       client.publish("temp_sensors", JSONmessageBuffer);
