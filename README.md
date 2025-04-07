@@ -1,7 +1,7 @@
 # Wemos-D1 mini ESP8266 WiFi MQTT SHT30 temperature and humidity sensor
 Arduino firmware for the **Wemos D1 Mini** (ESP8266) and the **SHT30** temperature and humidity sensor shield
 
-Update: FWIW, you can now use (ESPHome)[https://esphome.io/] on this hardware. It's a much more complete solution that connects to Home Assistant. I must remember to update this with a guide to how to deploy the firmware when I next try it.
+Update: FWIW, you can now use [ESPHome](https://esphome.io/) on this hardware. It's a much more complete solution that connects to Home Assistant. I must remember to update this with a guide to how to deploy the firmware when I next try it.
 
 Uses:
 
